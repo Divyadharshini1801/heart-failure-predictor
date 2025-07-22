@@ -1,0 +1,73 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Jul 22 19:30:18 2025
+
+@author: gvino
+"""
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heart Failure Prediction</title>
+    <style>
+        body {
+            background-color: #f3f3f3;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            margin-top: 20px;
+            padding: 12px;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        p {
+            text-align: center;
+            font-size: 20px;
+            color: #0066cc;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Heart Failure Risk Predictor</h2>
+    <form action="/predict" method="post">
+        {% for field in ['age', 'creatinine_phosphokinase', 'diabetes',
+                         'ejection_fraction', 'high_blood_pressure',
+                         'platelets', 'serum_creatinine',
+                         'serum_sodium', 'time'] %}
+            <label>{{ field.replace('_', ' ').title() }}</label>
+            <input type="text" name="{{ field }}" required>
+        {% endfor %}
+        <button type="submit">Predict</button>
+    </form>
+    <p>{{ prediction_text }}</p>
+</body>
+</html>
